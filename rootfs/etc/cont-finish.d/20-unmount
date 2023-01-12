@@ -10,6 +10,6 @@ if grep -qs "$MOUNTPOINT" /proc/mounts; then
     wait ${!}
     exit 0
 else
-    echo -e "${PREFFIX}没有什么可卸载的"
+    echo -e "${PREFFIX} ${Yellow}没有什么可卸载的${Color_Off}"
     exit 1
 fi

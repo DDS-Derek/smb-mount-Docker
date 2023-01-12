@@ -17,8 +17,8 @@ fi
 
 if grep -qs "$MOUNTPOINT" /proc/mounts; then
     # 如果找到除 docker volume mount 之外的其他挂载点，在此处退出容器
-    echo -e "${PREFFIX} 在 /proc/mounts 中找到其他挂载点${Color_Off}"
+    echo -e "${PREFFIX} ${Yellow}在 /proc/mounts 中找到其他挂载点${Color_Off}"
     exit 1
 else
-    echo "挂载点 $MOUNTPOINT 已准备就绪"
+    echo -e "${PREFFIX} ${Green}挂载点 $MOUNTPOINT 已准备就绪${Color_Off}"
 fi
