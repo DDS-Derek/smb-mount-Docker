@@ -1,0 +1,15 @@
+#!/usr/bin/with-contenv bash
+
+source /etc/colors.sh
+
+PREFFIX="[cont-finish.d] $(s6-basename ${0}):"
+
+if grep -qs "$MOUNTPOINT" /proc/mounts; then
+    echo -e "${PREFFIX} ${Green}卸载 $MOUNTPOINT $(date +%Y.%m.%d-%T)${Color_Off}"
+    umount $UMOUNTOPTIONS $MOUNTPOINT
+    wait ${!}
+    exit 0
+else
+    echo -e "${PREFFIX}没有什么可卸载的"
+    exit 1
+fi

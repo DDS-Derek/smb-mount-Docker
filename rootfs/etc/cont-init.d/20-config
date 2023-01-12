@@ -1,0 +1,24 @@
+#!/usr/bin/with-contenv bash
+
+source /etc/colors.sh
+
+PREFFIX="[cont-init.d] $(s6-basename ${0}):"
+
+# 创建挂载点文件夹
+if [ ! -d "${MOUNTPOINT}" ]; then \
+    mkdir -p \
+        $MOUNTPOINT
+fi
+
+# 检查 MOUNTPOINT 是否为空
+if [ "$(ls -A ${MOUNTPOINT})" ]; then
+    echo -e "${PREFFIX} ${Red}MountPoint 文件夹不为空[ERROR]${Color_Off}"
+fi
+
+if grep -qs "$MOUNTPOINT" /proc/mounts; then
+    # 如果找到除 docker volume mount 之外的其他挂载点，在此处退出容器
+    echo -e "${PREFFIX} 在 /proc/mounts 中找到其他挂载点${Color_Off}"
+    exit 1
+else
+    echo "挂载点 $MOUNTPOINT 已准备就绪"
+fi
