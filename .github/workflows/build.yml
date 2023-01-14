@@ -2,6 +2,8 @@ name: Build smb-mount-Docker Image
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * *"
 
 jobs:
   push:
