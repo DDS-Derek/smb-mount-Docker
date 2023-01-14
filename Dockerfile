@@ -21,7 +21,7 @@ RUN apk add --no-cache \
         /var/cache/apk/* \
         /var/lib/apk/lists/*
 
-COPY rootfs/ /
+COPY --chmod=755 rootfs/ /
 
 ENTRYPOINT ["/init"]
 
