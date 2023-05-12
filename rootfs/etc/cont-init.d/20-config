@@ -2,7 +2,7 @@
 
 source /etc/colors.sh
 
-PREFFIX="[cont-init.d] $(s6-basename ${0}):"
+PREFFIX="cont-init: info: $(s6-basename ${0}):"
 
 # 创建挂载点文件夹
 if [ ! -d "${MOUNTPOINT}" ]; then \

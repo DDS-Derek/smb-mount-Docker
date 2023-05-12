@@ -2,7 +2,7 @@
 
 source /etc/colors.sh
 
-PREFFIX="[cont-finish.d] $(s6-basename ${0}):"
+PREFFIX="cont-init: info: $(s6-basename ${0}):"
 
 if grep -qs "$MOUNTPOINT" /proc/mounts; then
     echo -e "${PREFFIX} ${Green}卸载 $MOUNTPOINT $(date +%Y.%m.%d-%T)${Color_Off}"
